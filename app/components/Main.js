@@ -1,9 +1,9 @@
+
 var React = require('react');
 
 // createclass is to create a component.
 var Main = React.createClass({
-
-  render: function() {
+  render: function(){
     return (
       <div>
         Hello World
@@ -11,3 +11,5 @@ var Main = React.createClass({
     )
   }
 });
+
+module.exports = Main;

@@ -1,6 +1,6 @@
 module.exports = {
   // point webpack to the root component.So know where to start process.
-  entry: "./app/components/Main.js",
+  entry: "./app/App.js",
   // after compiling, throw the code to public/bundle.js.
   output: {
     filename: "public/bundle.js"
