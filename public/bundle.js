@@ -23700,12 +23700,10 @@
 	    };
 	  },
 
-	  componentDidMount: function componentDidMount() {
-	    // this.ref = new Firebase('http://github-note-taker.firebaseio.com');
-	    this.ref = new Firebase('https://first-react-app1.firebaseio.com/');
-
+	  init: function init() {
 	    var childRef = this.ref.child(this.getParams().username);
 	    this.bindAsArray(childRef, 'notes');
+
 	    helpers.getGithubInfo(this.getParams().username)
 	    // then take a callback.
 	    .then((function (dataObj) {
@@ -23716,8 +23714,19 @@
 	    }).bind(this));
 	  },
 
+	  componentDidMount: function componentDidMount() {
+	    this.ref = new Firebase('https://first-react-app1.firebaseio.com/');
+	    this.init();
+	  },
+
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.unbind('notes');
+	  },
+
+	  // when there is a route change.
+	  componentWillReceiveProps: function componentWillReceiveProps() {
+	    this.unbind('notes');
+	    this.init();
 	  },
 
 	  handleAddNote: function handleAddNote(newNote) {

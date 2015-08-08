@@ -18,12 +18,10 @@ var Profile = React.createClass({
     }
   },
 
-  componentDidMount: function() {
-    // this.ref = new Firebase('http://github-note-taker.firebaseio.com');
-    this.ref = new Firebase('https://first-react-app1.firebaseio.com/');
-
+  init: function() {
     var childRef = this.ref.child(this.getParams().username);
     this.bindAsArray(childRef, 'notes');
+
     helpers.getGithubInfo(this.getParams().username)
     // then take a callback.
       .then(function(dataObj) {
@@ -34,8 +32,19 @@ var Profile = React.createClass({
     }.bind(this));
   },
 
+  componentDidMount: function() {
+    this.ref = new Firebase('https://first-react-app1.firebaseio.com/');
+    this.init();
+  },
+
   componentWillUnmount: function() {
     this.unbind('notes');
+  },
+
+  // when there is a route change.
+  componentWillReceiveProps: function() {
+    this.unbind('notes');
+    this.init();
   },
 
   handleAddNote: function(newNote) {
