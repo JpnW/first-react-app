@@ -33,7 +33,7 @@ var Profile = React.createClass({
   },
 
   componentDidMount: function() {
-    this.ref = new Firebase('https://first-react-app1.firebaseio.com/');
+    this.ref = new Firebase('https://github-notetaker.firebaseio.com/');
     this.init();
   },
 
